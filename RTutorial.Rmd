@@ -46,12 +46,12 @@ http://en.wikipedia.org/wiki/Data_science
     
 # R Programming
 
-## R "Atomic" Data Types
+## R "Atomic" Classes (Data Types)
 
 * Character
     + "A"
 * Numeric (real numbers)
-    + Real Numbers (-7.12, 0, 3.1214)
+    + Real Numbers (-7.12, 0, 3.141593)
     + Inf = 1/0
     + Nan = 0/0
 * Integer
@@ -59,8 +59,40 @@ http://en.wikipedia.org/wiki/Data_science
 * Complex
     + 1+2i
 * Logical
-    + True or T
-    + False or F
+    + TRUE or T
+    + FALSE or F
+    
+## Vectors
+    Can only contain objects of the same class
+```{r}
+      vn<-c(4,2.1,5,6.4,7)  ## numeric vector
+      print(vn)
+```
+
+```{r}
+      vc<-c("d","S","12","Hello")  ## character vector
+      print(vc)
+```
+
+## Matrices
+    Like a vector can only contain objects of the same class
+```{r}
+      m <- matrix(1:12, nrow = 3, ncol = 4)  ##interger matrix
+      print(m)
+```
+
+```{r}
+      class(m[1,1])
+```
+
+## Lists
+    Can contain objects of different classes
+```{r}
+      l<-list(4,"List",TRUE,1+2i)
+      print(l)
+```
+
+## Data Frames
     
 ## Slide with R Code and Output
 
