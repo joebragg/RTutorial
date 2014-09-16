@@ -1,12 +1,6 @@
----
-title: "Data Science & R Programming"
-author: "Joe Bragg"
-date: "Sunday, September 14, 2014"
-output:
-  ioslides_presentation:
-    keep_md: yes
-    smaller: yes
----
+# Data Science & R Programming
+Joe Bragg  
+Sunday, September 14, 2014  
 
 ## What is Data Science?
 
@@ -73,45 +67,92 @@ http://en.wikipedia.org/wiki/Data_science
     
 ## Vectors
     Can only contain objects of the same class
-```{r}
+
+```r
       vn<-c(4,2.1,5,6.4,7)  ## numeric vector
       print(vn)
 ```
 
-```{r}
+```
+## [1] 4.0 2.1 5.0 6.4 7.0
+```
+
+
+```r
       vc<-c("d","S","12","Hello")  ## character vector
       print(vc)
 ```
 
+```
+## [1] "d"     "S"     "12"    "Hello"
+```
+
 ## Matrices
     Like a vector can only contain objects of the same class
-```{r}
+
+```r
       m <- matrix(1:12, nrow = 3, ncol = 4)  ##interger matrix
       print(m)
 ```
 
-```{r}
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12
+```
+
+
+```r
       class(m[1,1])
+```
+
+```
+## [1] "integer"
 ```
 
 ## Lists
     Can contain objects of different classes
-```{r}
+
+```r
       l<-list(4,"List",TRUE,1+2i)
       print(l)
+```
+
+```
+## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] "List"
+## 
+## [[3]]
+## [1] TRUE
+## 
+## [[4]]
+## [1] 1+2i
 ```
 
 ## Data Frames
     
 ## Slide with R Code and Output
 
-```{r}
+
+```r
 summary(cars)
+```
+
+```
+##      speed           dist    
+##  Min.   : 4.0   Min.   :  2  
+##  1st Qu.:12.0   1st Qu.: 26  
+##  Median :15.0   Median : 36  
+##  Mean   :15.4   Mean   : 43  
+##  3rd Qu.:19.0   3rd Qu.: 56  
+##  Max.   :25.0   Max.   :120
 ```
 
 ## Slide with Plot
 
-```{r, echo=FALSE}
-plot(cars)
-```
+![plot of chunk unnamed-chunk-7](./RTutorial_files/figure-html/unnamed-chunk-7.png) 
 
