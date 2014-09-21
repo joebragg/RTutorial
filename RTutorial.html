@@ -146,7 +146,7 @@
 <table class = 'rmdtable'>
 <col width="22%" />
 <col width="22%" />
-<col width="29%" />
+<col width="52%" />
 <tr class="header">
 <th align="left">Data Type</th>
 <th align="left">Example</th>
@@ -162,7 +162,7 @@
 <td align="left"><p>2.10, 4, -2, Inf, NaN</p></td>
 <td align="left"><ul>
 <li>Inf = 1/0</li>
-<li>Nan = 0/0</li>
+<li>NaN = 0/0</li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -190,54 +190,183 @@
 
 </article></slide><slide class=''><hgroup><h2>Vectors</h2></hgroup><article  id="vectors" class="smaller ">
 
-<pre >Can only contain objects of the same class</pre>
+<p>Vectors can only contain objects of the same class.</p>
 
-<pre class = 'prettyprint lang-r'>      vn&lt;-c(4,2.1,5,6.4,7)  ## numeric vector
-      print(vn)</pre>
+<pre class = 'prettyprint lang-r'>vn&lt;-c(4,2.1,5,6.4,7)  ## numeric vector
+print(vn)</pre>
 
 <pre >## [1] 4.0 2.1 5.0 6.4 7.0</pre>
 
-<pre class = 'prettyprint lang-r'>      vc&lt;-c(&quot;d&quot;,&quot;S&quot;,&quot;12&quot;,&quot;Hello&quot;)  ## character vector
-      print(vc)</pre>
+<pre class = 'prettyprint lang-r'>vc&lt;-c(&quot;d&quot;,&quot;S&quot;,&quot;12&quot;,&quot;Hello&quot;)  ## character vector
+vc  ## Short for print(vc)</pre>
 
 <pre >## [1] &quot;d&quot;     &quot;S&quot;     &quot;12&quot;    &quot;Hello&quot;</pre>
 
+<pre class = 'prettyprint lang-r'>qa&lt;-c(T,F,T,T,F,F,T,F,T,T)
+names(qa)&lt;-c(&quot;Q1&quot;,&quot;Q2&quot;,&quot;Q3&quot;,&quot;Q4&quot;,&quot;Q5&quot;,&quot;Q6&quot;,&quot;Q7&quot;,&quot;Q8&quot;,&quot;Q9&quot;,&quot;Q10&quot;) # Adding Names
+qa</pre>
+
+<pre >##    Q1    Q2    Q3    Q4    Q5    Q6    Q7    Q8    Q9   Q10 
+##  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE</pre>
+
 </article></slide><slide class=''><hgroup><h2>Matrices</h2></hgroup><article  id="matrices" class="smaller ">
 
-<pre >Like a vector can only contain objects of the same class</pre>
+<p>Like a vector, a matrix can only contain objects of the same class.</p>
 
-<pre class = 'prettyprint lang-r'>      m &lt;- matrix(1:12, nrow = 3, ncol = 4)  ##interger matrix
-      print(m)</pre>
+<pre class = 'prettyprint lang-r'>m &lt;- matrix(1:12, nrow = 3, ncol = 4)  ##interger matrix
+dimnames(m) &lt;- list(c(&quot;x&quot;, &quot;y&quot;,&quot;z&quot;), c(&quot;a&quot;, &quot;b&quot;,&quot;c&quot;,&quot;d&quot;)) #Adding row &amp; column names
+m</pre>
 
-<pre >##      [,1] [,2] [,3] [,4]
-## [1,]    1    4    7   10
-## [2,]    2    5    8   11
-## [3,]    3    6    9   12</pre>
+<pre >##   a b c  d
+## x 1 4 7 10
+## y 2 5 8 11
+## z 3 6 9 12</pre>
 
-<pre class = 'prettyprint lang-r'>      class(m[1,1])</pre>
+<pre class = 'prettyprint lang-r'>class(m[1,1])</pre>
 
 <pre >## [1] &quot;integer&quot;</pre>
 
+<pre class = 'prettyprint lang-r'>m[&quot;y&quot;,&quot;b&quot;]</pre>
+
+<pre >## [1] 5</pre>
+
 </article></slide><slide class=''><hgroup><h2>Lists</h2></hgroup><article  id="lists" class="smaller ">
 
-<pre >Can contain objects of different classes</pre>
+<p>Lists can contain objects of different classes</p>
 
-<pre class = 'prettyprint lang-r'>      l&lt;-list(4,&quot;List&quot;,TRUE,1+2i)
-      print(l)</pre>
+<pre class = 'prettyprint lang-r'>l&lt;-list(A1=4,A2=&quot;Median&quot;,A3=TRUE,A4=1+2i)
+l</pre>
 
-<pre >## [[1]]
+<pre >## $A1
 ## [1] 4
 ## 
-## [[2]]
-## [1] &quot;List&quot;
+## $A2
+## [1] &quot;Median&quot;
 ## 
-## [[3]]
+## $A3
 ## [1] TRUE
 ## 
-## [[4]]
+## $A4
 ## [1] 1+2i</pre>
 
+</article></slide><slide class=''><hgroup><h2>Factors</h2></hgroup><article  id="factors" class="smaller ">
+
+<p>Factors are used to represent qualitative data (Male/Female, Country, State, Color, Texture, etc.) and they can be ordered or unordered.</p>
+
+<pre class = 'prettyprint lang-r'>states&lt;-factor(c(&quot;Texas&quot;,&quot;Arkansas&quot;,&quot;Oklahoma&quot;,&quot;New Mexico&quot;,&quot;Louisiana&quot;))
+states</pre>
+
+<pre >## [1] Texas      Arkansas   Oklahoma   New Mexico Louisiana 
+## Levels: Arkansas Louisiana New Mexico Oklahoma Texas</pre>
+
+<pre class = 'prettyprint lang-r'>tf&lt;-factor(c(T,F,T,T,F,F,T))  ##unordered
+tf</pre>
+
+<pre >## [1] TRUE  FALSE TRUE  TRUE  FALSE FALSE TRUE 
+## Levels: FALSE TRUE</pre>
+
+<pre class = 'prettyprint lang-r'>tf&lt;-factor(c(T,F,T,T,F,F,T),levels=c(T,F))  ##ordered
+tf</pre>
+
+<pre >## [1] TRUE  FALSE TRUE  TRUE  FALSE FALSE TRUE 
+## Levels: TRUE FALSE</pre>
+
 </article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames" class="smaller ">
+
+<p>Data Frames are used to store tabular data.</p>
+
+<pre class = 'prettyprint lang-r'>team&lt;-data.frame(Name=c(&quot;John&quot;,&quot;Amy&quot;,&quot;Bob&quot;,&quot;Mike&quot;,&quot;Sue&quot;),Number=c(3,2,6,17,8),
+                 Active=c(T,T,F,T,F))
+team</pre>
+
+<pre >##   Name Number Active
+## 1 John      3   TRUE
+## 2  Amy      2   TRUE
+## 3  Bob      6  FALSE
+## 4 Mike     17   TRUE
+## 5  Sue      8  FALSE</pre>
+
+<pre class = 'prettyprint lang-r'>ncol(team)</pre>
+
+<pre >## [1] 3</pre>
+
+<pre class = 'prettyprint lang-r'>nrow(team)</pre>
+
+<pre >## [1] 5</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Frames Continued</h2></hgroup><article  id="data-frames-continued" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>names(team)</pre>
+
+<pre >## [1] &quot;Name&quot;   &quot;Number&quot; &quot;Active&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>team[1,]</pre>
+
+<pre >##   Name Number Active
+## 1 John      3   TRUE</pre>
+
+<pre class = 'prettyprint lang-r'>team[2,2]</pre>
+
+<pre >## [1] 2</pre>
+
+</article></slide><slide class=''><hgroup><h2>Data Frames Continued</h2></hgroup><article  id="data-frames-continued-1" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>team[&quot;Name&quot;]</pre>
+
+<pre >##   Name
+## 1 John
+## 2  Amy
+## 3  Bob
+## 4 Mike
+## 5  Sue</pre>
+
+<pre class = 'prettyprint lang-r'>team$Name[2:4]</pre>
+
+<pre >## [1] Amy  Bob  Mike
+## Levels: Amy Bob John Mike Sue</pre>
+
+<pre class = 'prettyprint lang-r'>class(team$Name)</pre>
+
+<pre >## [1] &quot;factor&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2>Subsetting</h2></hgroup><article  id="subsetting" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>vc</pre>
+
+<pre >## [1] &quot;d&quot;     &quot;S&quot;     &quot;12&quot;    &quot;Hello&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>vc[2:4] # Subsetting a vector</pre>
+
+<pre >## [1] &quot;S&quot;     &quot;12&quot;    &quot;Hello&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>m</pre>
+
+<pre >##   a b c  d
+## x 1 4 7 10
+## y 2 5 8 11
+## z 3 6 9 12</pre>
+
+<pre class = 'prettyprint lang-r'>m[&quot;y&quot;,3:4] # Subsetting a matrix</pre>
+
+<pre >##  c  d 
+##  8 11</pre>
+
+</article></slide><slide class=''><hgroup><h2>Subsetting Continued</h2></hgroup><article  id="subsetting-continued" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>team</pre>
+
+<pre >##   Name Number Active
+## 1 John      3   TRUE
+## 2  Amy      2   TRUE
+## 3  Bob      6  FALSE
+## 4 Mike     17   TRUE
+## 5  Sue      8  FALSE</pre>
+
+<pre class = 'prettyprint lang-r'>team[team$Active==FALSE, ] # Subsetting the &quot;team&quot; data frame on inactive players</pre>
+
+<pre >##   Name Number Active
+## 3  Bob      6  FALSE
+## 5  Sue      8  FALSE</pre>
 
 </article></slide><slide class=''><hgroup><h2>Slide with R Code and Output</h2></hgroup><article  id="slide-with-r-code-and-output" class="smaller ">
 

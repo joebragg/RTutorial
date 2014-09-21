@@ -45,32 +45,33 @@ http://en.wikipedia.org/wiki/Data_science
 
 ## R "Atomic" Classes (Data Types)
     
-+---------------+---------------+--------------------+
-| Data Type     | Example       | Comments           |
-+===============+===============+====================+
-|Character      | "A", "f", "4",|                    |
-|               | "$", "Hello"  |                    |
-+---------------+---------------+--------------------+
-|Numeric        | 2.10, 4, -2,  | - Inf = 1/0        |
-|(real numbers) | Inf, NaN      | - Nan = 0/0        |
-+---------------+---------------+--------------------+
-|Integer        |12**L**, 0:8   | - L makes the number |
-|               |               | an integer         |
-|               |               | - 0:8 = 0 1 2 3 4 5 6 7 8|
-+---------------+---------------+--------------------+
-|Complex        |1+2i, 4i       | - Re() function gives real part|
++---------------+---------------+-------------------------------------+
+| Data Type     | Example       | Comments                            |
++===============+===============+=====================================+
+|Character      | "A", "f", "4",|                                     |
+|               | "$", "Hello"  |                                     |
++---------------+---------------+-------------------------------------+
+|Numeric        | 2.10, 4, -2,  | - Inf = 1/0                         |
+|(real numbers) | Inf, NaN      | - NaN = 0/0                         |
++---------------+---------------+-------------------------------------+
+|Integer        |12**L**, 0:8   | - L makes the number an integer     |
+|               |               | - 0:8 = 0 1 2 3 4 5 6 7 8           |
++---------------+---------------+-------------------------------------+
+|Complex        |1+2i, 4i       | - Re() function gives real part     |
 |               |               | - Im() function gives imaginary part|
-+---------------+---------------+--------------------+
-|Logical        |TRUE or FALSE, |                    |
-|               |T or F         |                    |
-+---------------+---------------+--------------------+
++---------------+---------------+-------------------------------------+
+|Logical        |TRUE or FALSE, |                                     |
+|               |T or F         |                                     |
++---------------+---------------+-------------------------------------+
     
 ## Vectors
-    Can only contain objects of the same class
+
+Vectors can only contain objects of the same class.
+    
 
 ```r
-      vn<-c(4,2.1,5,6.4,7)  ## numeric vector
-      print(vn)
+vn<-c(4,2.1,5,6.4,7)  ## numeric vector
+print(vn)
 ```
 
 ```
@@ -79,62 +80,292 @@ http://en.wikipedia.org/wiki/Data_science
 
 
 ```r
-      vc<-c("d","S","12","Hello")  ## character vector
-      print(vc)
+vc<-c("d","S","12","Hello")  ## character vector
+vc  ## Short for print(vc)
 ```
 
 ```
 ## [1] "d"     "S"     "12"    "Hello"
 ```
 
+
+```r
+qa<-c(T,F,T,T,F,F,T,F,T,T)
+names(qa)<-c("Q1","Q2","Q3","Q4","Q5","Q6","Q7","Q8","Q9","Q10") # Adding Names
+qa
+```
+
+```
+##    Q1    Q2    Q3    Q4    Q5    Q6    Q7    Q8    Q9   Q10 
+##  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE
+```
+
+
 ## Matrices
-    Like a vector can only contain objects of the same class
+
+Like a vector, a matrix can only contain objects of the same class.
+    
 
 ```r
-      m <- matrix(1:12, nrow = 3, ncol = 4)  ##interger matrix
-      print(m)
+m <- matrix(1:12, nrow = 3, ncol = 4)  ##interger matrix
+dimnames(m) <- list(c("x", "y","z"), c("a", "b","c","d")) #Adding row & column names
+m
 ```
 
 ```
-##      [,1] [,2] [,3] [,4]
-## [1,]    1    4    7   10
-## [2,]    2    5    8   11
-## [3,]    3    6    9   12
+##   a b c  d
+## x 1 4 7 10
+## y 2 5 8 11
+## z 3 6 9 12
 ```
 
 
 ```r
-      class(m[1,1])
+class(m[1,1])
 ```
 
 ```
 ## [1] "integer"
 ```
 
-## Lists
-    Can contain objects of different classes
 
 ```r
-      l<-list(4,"List",TRUE,1+2i)
-      print(l)
+m["y","b"]
 ```
 
 ```
-## [[1]]
+## [1] 5
+```
+
+## Lists
+
+Lists can contain objects of different classes
+    
+
+```r
+l<-list(A1=4,A2="Median",A3=TRUE,A4=1+2i)
+l
+```
+
+```
+## $A1
 ## [1] 4
 ## 
-## [[2]]
-## [1] "List"
+## $A2
+## [1] "Median"
 ## 
-## [[3]]
+## $A3
 ## [1] TRUE
 ## 
-## [[4]]
+## $A4
 ## [1] 1+2i
+```
+## Factors
+
+Factors are used to represent qualitative data (Male/Female, Country, State, Color, Texture, etc.) and they can be ordered or unordered.
+
+
+```r
+states<-factor(c("Texas","Arkansas","Oklahoma","New Mexico","Louisiana"))
+states
+```
+
+```
+## [1] Texas      Arkansas   Oklahoma   New Mexico Louisiana 
+## Levels: Arkansas Louisiana New Mexico Oklahoma Texas
+```
+
+```r
+tf<-factor(c(T,F,T,T,F,F,T))  ##unordered
+tf
+```
+
+```
+## [1] TRUE  FALSE TRUE  TRUE  FALSE FALSE TRUE 
+## Levels: FALSE TRUE
+```
+
+```r
+tf<-factor(c(T,F,T,T,F,F,T),levels=c(T,F))  ##ordered
+tf
+```
+
+```
+## [1] TRUE  FALSE TRUE  TRUE  FALSE FALSE TRUE 
+## Levels: TRUE FALSE
 ```
 
 ## Data Frames
-    
+
+Data Frames are used to store tabular data.
+
+```r
+team<-data.frame(Name=c("John","Amy","Bob","Mike","Sue"),Number=c(3,2,6,17,8),
+                 Active=c(T,T,F,T,F))
+team
+```
+
+```
+##   Name Number Active
+## 1 John      3   TRUE
+## 2  Amy      2   TRUE
+## 3  Bob      6  FALSE
+## 4 Mike     17   TRUE
+## 5  Sue      8  FALSE
+```
+
+
+```r
+ncol(team)
+```
+
+```
+## [1] 3
+```
+
+
+```r
+nrow(team)
+```
+
+```
+## [1] 5
+```
+
+## Data Frames Continued
+
+
+```r
+names(team)
+```
+
+```
+## [1] "Name"   "Number" "Active"
+```
+
+
+```r
+team[1,]
+```
+
+```
+##   Name Number Active
+## 1 John      3   TRUE
+```
+
+
+```r
+team[2,2]
+```
+
+```
+## [1] 2
+```
+
+## Data Frames Continued
+
+
+```r
+team["Name"]
+```
+
+```
+##   Name
+## 1 John
+## 2  Amy
+## 3  Bob
+## 4 Mike
+## 5  Sue
+```
+
+
+```r
+team$Name[2:4]
+```
+
+```
+## [1] Amy  Bob  Mike
+## Levels: Amy Bob John Mike Sue
+```
+
+
+```r
+class(team$Name)
+```
+
+```
+## [1] "factor"
+```
+
+## Subsetting
+
+
+```r
+vc
+```
+
+```
+## [1] "d"     "S"     "12"    "Hello"
+```
+
+
+```r
+vc[2:4] # Subsetting a vector
+```
+
+```
+## [1] "S"     "12"    "Hello"
+```
+
+
+```r
+m
+```
+
+```
+##   a b c  d
+## x 1 4 7 10
+## y 2 5 8 11
+## z 3 6 9 12
+```
+
+
+```r
+m["y",3:4] # Subsetting a matrix
+```
+
+```
+##  c  d 
+##  8 11
+```
+
+## Subsetting Continued
+
+
+```r
+team
+```
+
+```
+##   Name Number Active
+## 1 John      3   TRUE
+## 2  Amy      2   TRUE
+## 3  Bob      6  FALSE
+## 4 Mike     17   TRUE
+## 5  Sue      8  FALSE
+```
+
+
+```r
+team[team$Active==FALSE, ] # Subsetting the "team" data frame on inactive players
+```
+
+```
+##   Name Number Active
+## 3  Bob      6  FALSE
+## 5  Sue      8  FALSE
+```
+
 ## Slide with R Code and Output
 
 
@@ -154,5 +385,5 @@ summary(cars)
 
 ## Slide with Plot
 
-![plot of chunk unnamed-chunk-7](./RTutorial_files/figure-html/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-27](./RTutorial_files/figure-html/unnamed-chunk-27.png) 
 
